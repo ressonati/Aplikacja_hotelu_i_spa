@@ -1,0 +1,85 @@
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+  <div class="container-fluid ">
+    <a class="navbar-brand" href="/">Hotel</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav" style="justify-content:center">
+      <ul class="navbar-nav mx-auto">
+
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/">Strona główna</a>
+        </li>
+
+<!--        <li class="nav-item">-->
+<!--          <a class="nav-link" href="/przegladaj-dostepne-pokoje">Przeglądaj dostępne pokoje</a>-->
+<!--        </li>-->
+
+<!--        <li class="nav-item">-->
+<!--          <a class="nav-link" href="/przegladaj-uslugi-spa">Przeglądaj usługi spa</a>-->
+<!--        </li>-->
+
+        <li class="nav-item">
+          <a class="nav-link" href="/przegladaj-pokoje">Rezerwuj pokoj</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/przegladaj-spa">Rezerwuj usluge spa</a>
+        </li>
+
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="/wyloguj">Wyloguj się</a>
+        </li>
+        <li class="nav-item" style="margin-left:auto;">
+          <span class="nav-link">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Zalogowany, {{user.username}}</span>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="/zarejestruj">Zarejestruj się</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/zaloguj">Zaloguj się</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
+    <div class=" col bg-light p-3 border bg-primary" style="background:url('/static/images/background1.jpg'); object-fit:cover">
+    <center style="font-size:30px; font-style:bold; color:blue">Natura i zdrowie</center>
+    </div>
+
+
+{% if request.user.is_active and request.user.is_staff %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+  <div class="container-fluid ">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavrecepcjonista" style="justify-content:center">
+      <ul class="navbar-nav mx-auto">
+
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/zarzadzaj-uzytkownikami">  Zarządzaj użytkownikami</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/zarzadzaj-spa">Zarządzaj rezerwacjami usług spa</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/zarzadzaj-pokoje">Zarządzaj rezerwacjami pokoi</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+{% endif %}
+
+
+
+
+
+

@@ -1,0 +1,64 @@
+{% load static %}
+{% static 'images' as baseUrl %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <title>Informacje o pokojach</title>
+  </head>
+  <body>
+
+
+<div class="container" style="height:100vh; background-color:whitesmoke; padding:0">
+
+  {% include "./szablon.html" %}
+  {% if user.is_authenticated %}
+  {% for p in pokoj %}
+  <div style="margin-top:30px; margin-left:30px;">
+    <p style="font-weight:bold; font-size: 25px; margin-left:40px; margin-bottom:25px">Rezerwujesz pokój numer {{p.pk}}</p>
+  <img style="float: left; margin-right:20px; border: 5px solid #3987c9;" src="{{baseUrl}}/{{p.img}}" alt="Zdjęcie pokoju"
+                 width="300px" height="200px">
+  <p style="font-weight: bold; font-size: 25px;">"{{p.nazwa_pokoju}}"</p>
+  <p>{{p.opis_pokoju}}</p>
+  <p>Stadard : {{p.standard}}</p>
+  <p>Rodzaj : {{p.rodzaj}}</p>
+  <p style="margin-bottom:50px">Cena za dobę : {{p.cena}} PLN</p>
+  {% endfor %}
+  <p style="font-weight:bold; font-size: 25px; margin-left:40px">Wypełnij dane:</p>
+    {% block conent %}
+    <form method="POST" style="margin-left:40px">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit" class="btn btn-primary">Wyślij rezerwację</button>
+  <br>
+      </form>
+    {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+  {% else %}
+  <big>Aby zarezerwować pokój, należy być zalogowanym!</big>
+  {% endif %}
+
+
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+  </body>
+</html>
